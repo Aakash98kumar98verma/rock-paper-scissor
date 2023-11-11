@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://kit.fontawesome.com/604abde21b.js" crossorigin="anonymous"></script> -->
+    <script src="https://kit.fontawesome.com/604abde21b.js" crossorigin="anonymous"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: cursive;
+            font-weight: bold;
+            text-align: center;
+            background: linear-gradient(to right, #ffcc00, #ff6666, #3399ff);
+        }
+
+        .btn {
+            margin: 5% 0;
+        }
+
+        button {
+            margin: 2%;
+            padding: 2%;
+            font-weight: bold;
+            font-size: large;
+            border: 2px inset slategray;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: rgb(252, 166, 151);
+        }
+
+        button:hover {
+            background-color: tomato;
+            transition: 0.5s;
+        }
+
+        #result,
+        #winner,
+        #scores {
+            /* text-decoration: underline; */
+            font-weight: bold;
+            font-size: x-large;
+            color: rgb(130, 0, 0);
+        }
+
+        .container {
+            margin: 5% auto;
+            padding: 5%;
+            border: 5px ridge black;
+            width: fit-content;
+            border-radius: 10px;
+            box-shadow: 7.5px 7.5px 7.5px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+    <title>Rock Paper Scissor</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Lets Play Rock-Paper-Scissor !</h1>
+
+        <div class="btn">
+            <button onclick="playRound('Rock')"> <i class="fa-regular fa-hand-back-fist fa-2xl"></i> Rock</button>
+            <button onclick="playRound('Paper')"><i class="fa-regular fa-hand fa-2xl"></i> Paper</button>
+            <button onclick="playRound('Scissor')"><i class="fa-regular fa-hand-scissors fa-2xl"></i> Scissor</button>
+        </div>
+
+        <p id="result"></p>
+        <p id="winner"></p>
+        <p id="scores"></p>
+    </div>
+
+    <script>
+
+        let score = {
+            win: 0,
+            lost: 0,
+            tie: 0,
+        };
+
+        function playRound(playerChoice) {
+            let computerChoice;
+            let result;
+            let randomNumber = Math.random() * 3;
+
+            if (randomNumber > 0 && randomNumber <= 1) {
+                computerChoice = 'Rock';
+            } else if (randomNumber > 1 && randomNumber <= 2) {
+                computerChoice = 'Paper';
+            } else {
+                computerChoice = 'Scissor';
+            }
+
+            if (computerChoice === playerChoice) {
+                score.tie++;
+                result = `It's a tie..!`;
+            } else if (computerChoice === 'Rock' && playerChoice === 'Paper') {
+                score.win++;
+                result = `You Win..!`;
+            } else if (computerChoice === 'Paper' && playerChoice === 'Scissor') {
+                score.win++;
+                result = `You Win..!`;
+            } else if (computerChoice === 'Scissor' && playerChoice === 'Rock') {
+                score.win++;
+                result = `You Win..!`;
+            } else {
+                score.lost++;
+                result = `Computer Won..!`;
+            }
+
+            document.getElementById('result').textContent = (`Computer choice is ${computerChoice} and Your choice is ${playerChoice}.`);
+            document.getElementById('winner').textContent = `${result} 🤩`;
+            document.getElementById('scores').textContent = `Won: ${score.win}, Lose: ${score.lost} and Tie: ${score.tie}.`;
+        }
+    </script>
+</body>
+
+</html>
