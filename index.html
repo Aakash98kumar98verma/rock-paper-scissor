@@ -42,7 +42,8 @@
         }
 
         #result,
-        #winner {
+        #winner,
+        #scores {
             /* text-decoration: underline; */
             font-weight: bold;
             font-size: x-large;
@@ -73,9 +74,17 @@
 
         <p id="result"></p>
         <p id="winner"></p>
+        <p id="scores"></p>
     </div>
 
     <script>
+
+        let score = {
+            win: 0,
+            lost: 0,
+            tie: 0,
+        };
+
         function playRound(playerChoice) {
             let computerChoice;
             let result;
@@ -90,20 +99,25 @@
             }
 
             if (computerChoice === playerChoice) {
+                score.tie++;
                 result = `It's a tie..!`;
             } else if (computerChoice === 'Rock' && playerChoice === 'Paper') {
+                score.win++;
                 result = `You Win..!`;
             } else if (computerChoice === 'Paper' && playerChoice === 'Scissor') {
+                score.win++;
                 result = `You Win..!`;
             } else if (computerChoice === 'Scissor' && playerChoice === 'Rock') {
+                score.win++;
                 result = `You Win..!`;
             } else {
+                score.lost++;
                 result = `Computer Won..!`;
             }
 
             document.getElementById('result').textContent = (`Computer choice is ${computerChoice} and Your choice is ${playerChoice}.`);
             document.getElementById('winner').textContent = `${result} 🤩`;
-            // console.log(`Computer choice is ${computerChoice}, Your choice is ${playerChoice} and ${result}`);
+            document.getElementById('scores').textContent = `Won: ${score.win}, Lose: ${score.lost} and Tie: ${score.tie}.`;
         }
     </script>
 </body>
